@@ -1,0 +1,6 @@
+/.claude
+/node_modules
+/.env
+/.env.local
+/.env.*.local
+/datas_to_import

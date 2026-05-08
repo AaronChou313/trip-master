@@ -1,0 +1,29 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Root scratch files
+.codex
+.local/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.development
+frontend/.env.production
+frontend/.env.local
+frontend/.env.*.local
+frontend/console.txt
+frontend/.claude/
+
+# Backend
+backend/node_modules/
+backend/.env
+backend/.env.local
+backend/.env.*.local
+
+# Data import artifacts
+backend/datas_to_import/
