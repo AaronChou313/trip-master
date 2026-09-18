@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>旅行规划大师 TripMaster</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7f3">
+  <meta name="description" content="以地图为核心的本地优先旅行规划工作台">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>TripMaster · 地图旅行工作台</title>
 </head>
 <body>
-    <div id="app"></div>
-    <script>
-        // 动态加载高德地图SDK
-        const amapKey = '<%= process.env.VUE_APP_AMAP_KEY %>' || 'your_amap_api_key_here';
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = `https://webapi.amap.com/maps?v=1.4.15&key=${amapKey}`;
-        script.onerror = function() {
-            console.error('高德地图SDK加载失败');
-        };
-        document.head.appendChild(script);
-    </script>
+  <div id="app"></div>
+  <script>
+    (function loadAmap() {
+      var key = '<%= process.env.VUE_APP_AMAP_KEY %>';
+      if (!key || key === 'replace_me' || key === 'your_amap_api_key_here') return;
+      var script = document.createElement('script');
+      script.src = 'https://webapi.amap.com/maps?v=1.4.15&plugin=AMap.PlaceSearch,AMap.Walking,AMap.Driving,AMap.Riding,AMap.Transfer&key=' + key;
+      script.async = true;
+      script.onerror = function () { console.warn('地图服务未加载，应用将使用本地降级模式。'); };
+      document.head.appendChild(script);
+    }());
+  </script>
 </body>
 </html>

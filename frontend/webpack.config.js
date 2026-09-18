@@ -50,10 +50,11 @@ module.exports = (env, argv) => {
       }),
       new Dotenv({
         path: path.resolve(__dirname, envFile),
-        safe: true,
-        systemvars: true, // 关键：允许使用系统环境变量
-        silent: false,
-        defaults: true // 使用默认值
+        safe: false,
+        systemvars: true,
+        silent: true,
+        defaults: false,
+        allowEmptyValues: true
       })
     ],
     resolve: {
@@ -71,12 +72,7 @@ module.exports = (env, argv) => {
       hot: true,
       open: true,
       historyApiFallback: true,
-      proxy: {
-        '/api': {
-          target: 'http://localhost:3000',
-          changeOrigin: true
-        }
-      }
+      client: { overlay: true }
     },
     optimization: {
       splitChunks: {

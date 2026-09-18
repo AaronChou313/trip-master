@@ -10,21 +10,17 @@ npm run build
 
 构建输出目录为 `dist/`。
 
-## 关键环境变量
+## 可选环境变量
 
-部署前确认以下变量已正确配置：
-
-- `VUE_APP_API_BASE_URL`
-- `VUE_APP_AMAP_KEY`
-- `NODE_ENV=production`
+如需在线地图、地点搜索和真实路线，配置 `VUE_APP_AMAP_KEY`。不配置时仍可构建和使用本地规划功能。
 
 示例参考 [frontend/.env.production.example](/home/aaron/alex/trip-master/frontend/.env.production.example)。
 
 ## 静态部署要求
 
 - 需要托管 `dist/` 目录
-- 需要支持单页应用入口回退到 `index.html`
-- 后端 API 需允许前端域名访问
+- 应用使用 Hash 路由，不需要额外的 SPA 回退规则
+- 核心数据写入当前浏览器的 IndexedDB，不依赖后端 API
 
 ## Vercel
 

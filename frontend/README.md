@@ -1,61 +1,32 @@
 # TripMaster Frontend
 
-TripMaster 前端是一个基于 Vue 3 的单页应用，提供地点管理、行程规划、预算管理、备忘录和用户设置界面。
+Vue 3 + Webpack 5 单页应用。核心功能完全在浏览器运行，默认不需要后端、数据库或账号。
 
-## 技术栈
-
-- Vue 3
-- Vue Router 4
-- Webpack 5
-- Chart.js
-- 高德地图 JavaScript SDK
-
-## 运行要求
-
-- Node.js 14+
-- 后端 API 服务
-- 高德地图 API Key
-
-## 启动方式
+## 运行
 
 ```bash
 npm install
 npm run dev
 ```
 
-默认访问：`http://localhost:8082`
-
-构建生产包：
+生产构建：
 
 ```bash
 npm run build
 ```
 
-## 环境变量
+## 可选地图配置
 
-可参考以下示例文件：
+```bash
+cp .env.development.example .env.development
+```
 
-- [frontend/.env.example](/home/aaron/alex/trip-master/frontend/.env.example)
-- [frontend/.env.development.example](/home/aaron/alex/trip-master/frontend/.env.development.example)
-- [frontend/.env.production.example](/home/aaron/alex/trip-master/frontend/.env.production.example)
+填写 `VUE_APP_AMAP_KEY` 后启用高德底图、地点搜索和真实市内路线。没有 Key 时使用本地点位目录与路线估算，其他功能保持可用。
 
-主要变量：
+## 正式页面
 
-- `VUE_APP_API_BASE_URL`
-- `VUE_APP_AMAP_KEY`
-- `NODE_ENV`
+- `/`：我的旅行
+- `/trips/:id`：旅行工作台
+- `/settings`：设置
 
-## 页面模块
-
-- `GuideView`：使用指南
-- `PoisView`：地点搜索与收藏
-- `ItineraryView`：行程规划
-- `BudgetView`：预算管理
-- `MemosView`：备忘录
-- `ProfileView`：用户资料与账户操作
-
-## 说明
-
-- 开发环境下 `/api` 会代理到 `http://localhost:3000`
-- 应用使用 Hash 路由
-- 地图相关功能依赖高德地图 SDK 和后端接口
+数据写入 IndexedDB。导入和导出以整份 Trip JSON 为单位，当前 schema 版本为 3。
